@@ -1,0 +1,16 @@
+include:
+  - local: 'java-tests.yml'
+  - local: 'python-tests.yml'
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH != "main" && $CI_PIPELINE_SOURCE != "merge_request_event"
+      when: never
+    - when: always
+
+image: maven:3.9.4-amazoncorretto-21-debian
+
+stages:
+  - test_job
+  - test_code
+  - test_doc

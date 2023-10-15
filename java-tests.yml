@@ -1,0 +1,17 @@
+build_and_test_java:
+  stage: test_code
+  tags:
+    - docker
+    - linux
+    - shared
+  script:
+    - "apt update && apt install git -y"
+    - 'git clone $OOP_P1_TESTS .cloned_tests'
+    - cp -rf .cloned_tests/* .
+    - mvn compile test --batch-mode
+  artifacts:
+    when: always
+    paths:
+      - target/surefire-reports/*.xml
+    reports:
+      junit: target/surefire-reports/*.xml
