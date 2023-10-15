@@ -8,7 +8,7 @@ Ge en kort beskrivning av ditt projekt och förklara vad det gör och dess syfte
 
 List alla förutsättningar eller krav som användare måste ha installerade på sina system innan de kör ditt projekt. Till exempel:
 
-- Java Development Kit (OpenJDK) 17 LTS
+- Java Development Kit (OpenJDK) 21 LTS
 - Maven (för att bygga och köra projektet)
 
 ## Installation
