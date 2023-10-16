@@ -1,7 +1,5 @@
 .variables:
-  TEST_FILES:
-    - "test_1.py"
-    - "test_3.py"
+  TEST_FILE: "main.py"
 
 run_python_tests:
   stage: test_doc
@@ -10,20 +8,16 @@ run_python_tests:
     - linux
     - shared
   image: python:3.11.4-alpine3.17
-  parallel:
-    matrix:
-      - TEST_FILE:
-          - "test_1.py"
-          - "test_3.py"
   script:
     - "apk add git"
-    - 'git clone $DOCS_URL_P .cloned_tests_doc'
+    - 'git clone DOCS_URL_P .cloned_tests_doc'
     - cp -rf .cloned_tests_doc/* .
-    - pip install -r requirements.txt
-    - python $TEST_FILE
+    - pip install poetry
+    - poetry install
+    - poetry run python $TEST_FILE
   artifacts:
     when: always
     paths:
-      - ${TEST_FILE%.py}_test_report.xml
+      - result/*.xml
     reports:
-      junit: ${TEST_FILE%.py}_test_report.xml
+      junit: result/*.xml
