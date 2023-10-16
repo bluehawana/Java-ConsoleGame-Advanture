@@ -7,7 +7,7 @@ run_python_tests:
     - docker
     - linux
     - shared
-  image: python:3.11.4-alpine3.17
+  image: python:3.12.0-alpine3.18
   script:
     - "apk add git"
     - 'git clone $DOCS_URL_P .cloned_tests_doc'
