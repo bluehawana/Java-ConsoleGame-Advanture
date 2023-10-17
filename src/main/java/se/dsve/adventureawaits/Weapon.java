@@ -13,6 +13,8 @@ public class Weapon {
     public int damage;
 
     public Weapon() {
-        // Skriv din kod här
+        //En konstruktör för en svärd med damage 10.
+        this.name = "Svärd";
+        this.damage = 10;
     }
 }
