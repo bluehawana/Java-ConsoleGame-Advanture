@@ -9,20 +9,32 @@ package se.dsve.adventureawaits;
  */
 
 public class Shop {
-    public int weaponUpgradeCost;
-    public int hpRestoreCost;
+    // Variabel för att hålla i priserna för olika tjänster.
+    public int weaponUpgradeCost = 75;
+    public int hpRestoreCost = 100;
 
     public  void restoreHp(Player player) {
-        // Skriv din kod här
+
+        //Denna metod tar bort hpRestoreCost från spelarens goldAmount, fyller på spelarens currentHp till totalHp-nivån och skriver ut att man är frisk.
+
+        player.goldAmount =- hpRestoreCost;
+        player.currentHp = player.totalHp;
+        System.out.println("Nu är du helt frisk igen.");
     }
 
     public  void upgradeWeapon(Player player) {
-        // Skriv din kod här
-        // Tips: Använd player.weapon.damage för att öka skadan med 10 %
+
+        //Denna metod tar bort weaponUpgradeCost från spelarens goldAmount, höjer vapens damage med 10 och skriver ut ett meddelande till spelaren.
+
+        player.goldAmount =- weaponUpgradeCost;
+        player.weapon.damage =+ 10;
+        System.out.println("Din svärd är nu vassare.");
+
     }
 
     public static void showMenu(Player player) {
-        // Skriv din kod här
-        // Skriv ut saldot för spelaren och alternativen i shoppen
+        // Finns redan en metod för det i Menu.java.
     }
 }
+
+
