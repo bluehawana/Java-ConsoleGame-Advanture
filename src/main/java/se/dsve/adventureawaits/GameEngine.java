@@ -32,8 +32,7 @@ public class GameEngine {
             this.startHp = startHp;
             this.levelXp = levelXp;
             this.weaponDamage = weaponDamage;
-        }
-        else {
+        } else {
             System.out.println("Du kan inte byta difficulty när spelet har startat.");
         }
 
@@ -61,24 +60,17 @@ public class GameEngine {
                 System.out.println("Du har " + currentPlayerHp + " hp kvar.");
             } else {
                 // Skriv din kod här
-System.out.println("Du har dött.");
-endGame();
-            } } else {
-                System.out.println("Du måste starta spelet först.");
-
-
-
-
-
-
+                System.out.println("Du har dött.");
+                endGame();
             }
-            // Skriv din kod här
+        } else {
+            System.out.println("Du måste starta spelet först.");
         }
-
+    }
 
     public boolean isGameStarted() {
         // Skriv din kod här
         return gameStarted;
     }
 
-    }
+}
