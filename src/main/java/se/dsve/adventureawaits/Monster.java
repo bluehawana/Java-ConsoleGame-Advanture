@@ -10,16 +10,44 @@ package se.dsve.adventureawaits;
 
 public class Monster {
     public String name;
+    public int gold;
     public int hp;
     protected int damage;
     protected int goldReward;
     protected int xpReward;
 
+
+    public String getName() {
+        return name;
+    }
+
+    public int getGoldReward() {
+        return goldReward;
+    }
+
+    public int getXpReward() {
+        return xpReward;
+    }
+
     public Monster() {
-        // Skriv din kod här
+        // Default constructor
+    }
+
+    public Monster(String name, int hp, int damage, int goldReward, int xpReward) {
+        this.name = name;
+        this.hp = hp;
+        this.damage = damage;
+        this.goldReward = goldReward;
+        this.xpReward = xpReward;
     }
 
     public void attack(Player player) {
         // Skriv din kod här
+        if (player.currentHp > 0) {
+            player.currentHp = player.currentHp - damage;
+        }
+        else if (player.currentHp <= 0) {
+            System.out.println("Du dog.");
+        }
     }
 }

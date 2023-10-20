@@ -14,7 +14,32 @@ public class Weapon {
 
     public Weapon() {
         //En konstruktör för en svärd med damage 10.
-        this.name = "Svärd";
+        this.name = "sword";
         this.damage = 10;
+    }
+
+    public Weapon(String weaponName, int weaponDamage) {
+        this.name = weaponName;
+        this.damage = weaponDamage;
+    }
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter for damage
+    public int getDamage() {
+        return damage;
+    }
+
+    // Setter for damage
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

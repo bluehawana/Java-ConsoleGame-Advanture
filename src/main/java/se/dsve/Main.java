@@ -8,12 +8,91 @@ package se.dsve;
  * ----------------------------------------------------------------------------
  */
 
+import se.dsve.adventureawaits.GameEngine;
 import se.dsve.adventureawaits.Menu;
+import se.dsve.adventureawaits.Monster;
+import se.dsve.adventureawaits.Weapon;
+import se.dsve.adventureawaits.Player;
+import se.dsve.adventureawaits.Boss;
+import se.dsve.adventureawaits.Shop;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("=======================================");
+        System.out.println("Välkommen till adventureawaits!");
+        System.out.println("=======================================");
+        GameEngine gameEngine = new GameEngine();
+
         Menu menu = new Menu();
-        menu.start();
+        menu.start(gameEngine);
+
+        int initiaInput = Menu.getInput();
+        if(initiaInput == 1) {
+            gameEngine.startGame();
+        } else if (initiaInput == 2) {
+            gameEngine.endGame();
+        } else {
+            System.out.println("Felaktig inmatning");
+        }
+
+        gameEngine.setDifficulty(100, 50, 10);
+
+        // Initialize spelar med ett vapen
+        Weapon playerWeapon = new Weapon("Sword", gameEngine.weaponDamage);
+        Player player = new Player(Player.name, gameEngine.startHp, playerWeapon);
+
+        // initialize Monster och Boss
+        Monster monster = new Monster("Goblin", 30, 5, 10, 20);
+        Boss boss;
+        do {
+            try {
+                boss = new Boss("Dragon", 100, 20, 50, 100);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Boss skapades inte. Försöker igen...");
+            }
+        } while (true);
+
+        //initialize Shop och Menu
+        Shop shop = new Shop();
+
+
+        // Starta spelet
+
+
+        String currentMenu = "main";
+        while (gameEngine.isGameStarted()) {
+            Menu.showMenu(currentMenu, player);
+            int userinput = Menu.getInput();
+
+            switch (currentMenu) {
+                case "main":
+                    if (userinput == 1) {
+                        player.attack(monster);
+                    } else if (userinput == 2) {
+                        currentMenu = "shop";
+                    } else if (userinput == 3) {
+                        gameEngine.endGame();
+                    } else {
+                        System.out.println("Felaktig inmatning");
+                    }
+                    break;
+                case "shop":
+                    if (userinput == 1) {
+                        shop.restoreHp(player);
+                    } else if (userinput == 2) {
+                        shop.upgradeWeapon(player);
+                    } else if (userinput == 3) {
+                        currentMenu = "main";
+                    } else {
+                        System.out.println("Felaktig inmatning");
+                    }
+                    break;
+                default:
+                    System.out.println("Felaktig inmatning");
+                    break;
+            }
+        }
     }
 }
 

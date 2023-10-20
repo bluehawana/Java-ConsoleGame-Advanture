@@ -12,25 +12,46 @@ import java.util.Random;
 
 public class Boss extends Monster {
     public Boss() {
-        //  Skriv din kod här
-        //  multiplyRewards();
-        //  if (somthing) {
-        //      throw new IllegalArgumentException();
-        //  }
+        super();  // Calling the default constructor of Monster
+        if (new Random().nextInt(100) < 50) {
+            multiplyRewards();
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    // Overloaded constructor to initialize Boss with specific stats
+    public Boss(String name, int hp, int damage, int goldReward, int xpReward) {
+        super(name, hp, damage, goldReward, xpReward); // Calling the parameterized constructor of Monster
+        if (new Random().nextInt(100) < 50) {
+            multiplyRewards();
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     public void specialAttack(Player player) {
         // Skriv din kod här
         // 30 % chans att göra 50 % extra skada
+        if (new Random().nextInt(100) < 30) {
+            player.currentHp = player.currentHp - (int) (player.currentHp * 0.5);
+        }
     }
 
     public void specialDefend(Player player) {
         // Skriv din kod här
         // 30 % chans att blockera 50 % av spelarens skada
+        if (new Random().nextInt(100) < 30) {
+            player.currentHp = player.currentHp + (int)(player.currentHp * 0.5);
+        }
     }
 
     public void multiplyRewards() {
         // Skriv din kod här
         // 50 % extra guld och xp
+        if (new Random().nextInt(100) < 50) {
+            this.goldReward += (int)(this.goldReward * 0.5);
+            this.xpReward += (int)(this.xpReward * 0.5);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package se.dsve.adventureawaits;
 
+
 /*
  * ----------------------------------------------------------------------------
  * Copyright (c) 2019-2023 Marcus Medina, DSVE AB.
@@ -8,58 +9,62 @@ package se.dsve.adventureawaits;
  * ----------------------------------------------------------------------------
  */
 
+
+
 public class GameEngine {
-    public int startHp;
-    public int levelXp;
-    public int weaponDamage;
-    private boolean gameStarted;
+    public static int startHp = 100;  // Default values
+    private static int levelXp = 100;  // Default values
+    public static int weaponDamage = 10;  // Default values
+    private static boolean gameStarted = false;
+    private static int currentPlayerHp;
 
     // Getter for startHp
-    public int getStartHp() {
-        if (startHp == 0) {
-            return 100;
-        } else {
-            return startHp;
-        }
-
-        // Skriv din kod här
+    public static int getStartHp() {
+        return startHp;
     }
 
-    public void setDifficulty(int startHp, int levelXp, int weaponDamage) {
-        // Skriv din kod här
-        // Om spelet inte har startat än, så kan du ändra svårighetsgraden
-        if (!isGameStarted()) {
-            this.startHp = startHp;
-            this.levelXp = levelXp;
-            this.weaponDamage = weaponDamage;
+    public static int getLevelXp() {
+        return levelXp;
+    }
+
+    public static void setLevelXp(int levelXp) {
+        GameEngine.levelXp = levelXp;
+    }
+
+    public static int getWeaponDamage() {
+        return weaponDamage;
+    }
+
+    public static void setWeaponDamage(int weaponDamage) {
+        GameEngine.weaponDamage = weaponDamage;
+    }
+
+    public static void setDifficulty(int startHp, int levelXp, int weaponDamage) {
+        if (!gameStarted) {
+            GameEngine.startHp = startHp;
+            GameEngine.levelXp = levelXp;
+            GameEngine.weaponDamage = weaponDamage;
         } else {
             System.out.println("Du kan inte byta difficulty när spelet har startat.");
         }
-
     }
 
-    public void startGame() {
-        // Skriv din kod här
-        // Start the game
+    public static void startGame() {
+        currentPlayerHp = startHp;
         gameStarted = true;
-        currentPlayerHp = getStartHp();
         System.out.println("Spelet har startat.");
     }
 
-    public void endGame() {
-        // End the game
+    public static void endGame() {
         gameStarted = false;
         System.out.println("Spelet har avslutats.");
     }
 
-    public void gameLoop() {
-        // Main game loop
-        if (isGameStarted()) {
-            if (isPlayerAlive()) {
-                // Skriv din kod här
+    public static void gameLoop() {
+        if (gameStarted) {
+            if (currentPlayerHp > 0) {
                 System.out.println("Du har " + currentPlayerHp + " hp kvar.");
             } else {
-                // Skriv din kod här
                 System.out.println("Du har dött.");
                 endGame();
             }
@@ -68,9 +73,11 @@ public class GameEngine {
         }
     }
 
-    public boolean isGameStarted() {
-        // Skriv din kod här
+    public static boolean isGameStarted() {
         return gameStarted;
     }
 
+    public void setPlayerName(String playerName) {
+        Player.name = playerName;
+    }
 }
