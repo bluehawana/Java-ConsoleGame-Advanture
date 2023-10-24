@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 
 public class Player {
-    public static String name;
+    private String name;
     private int hp;
     private int level;
     private int levelXp;
@@ -20,15 +20,14 @@ public class Player {
     public int totalHp;
     public int currentHp;
     public Weapon weapon;
-    public int goldAmount;
+    private int goldAmount;
     private HashMap<String, Integer> monsterEncounters = new HashMap<>();
 
 
-
     public Player(String name, int startHp, Weapon weapon) {
-        Scanner scanner = new Scanner(System.in);// Skriv din kod här
+
         this.hp = 100;
-        this.name = scanner.nextLine();
+        this.name = name;
         this.level = 1;
         this.levelXp = 100;
         this.xp = 0;
@@ -53,6 +52,57 @@ public class Player {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getCurrentHp() {
+        return currentHp;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getLevelXp() {
+        return levelXp;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public int getTotalHp() {
+        return totalHp;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public int getGoldAmount() {
+        return goldAmount;
+    }
+
+    public int goldAmount() {
+        return goldAmount;
+    }
+
+    public void setCurrentHp(int currentHp) {
+        this.currentHp = currentHp;
+    }
+    public void setGoldAmount(int goldAmount) {
+        this.goldAmount = goldAmount;
+    }
+
+    public HashMap<String, Integer> getMonsterEncounters() {
+        return monsterEncounters;
+    }
+
     public void levelUp(GameEngine gameEngine) {
         // Skriv din kod här
         // Tips: Använd gameEngine.levelXp för att kolla om spelaren ska levla upp
@@ -60,18 +110,21 @@ public class Player {
             level++;
             xp -= levelXp;
             levelXp = (int) (levelXp * 1.5);
-            totalHp = (int)(totalHp*1.1);
+            totalHp = (int) (totalHp * 1.1);
             currentHp = totalHp;
             System.out.println("Du har levlat upp.");
         }
     }
-    public String getName() {
-        return name;
+    public int calculateDamage(){
+        int weaponDamage = weapon.getDamage();
+        int totalDamage = weaponDamage + (int) (Math.random() * 10) + 1;
+        return totalDamage;
+
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setName(String playerName) {
-        Player player = new Player(playerName, 100, weapon);
-    }
     public void restoreHp() {
         // Skriv din kod här
         // Tips: Använd gameEngine.startHp för att återställa spelarens hp
@@ -79,4 +132,7 @@ public class Player {
         System.out.println("Du har återställt ditt hp.");
     }
 
+    public void setXp(int i) {
+        xp = i;
+    }
 }

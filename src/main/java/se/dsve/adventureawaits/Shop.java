@@ -13,28 +13,32 @@ public class Shop {
     public int weaponUpgradeCost = 75;
     public int hpRestoreCost = 100;
 
-    public  void restoreHp(Player player) {
-
+    public void restoreHp(Player player) {
         //Denna metod tar bort hpRestoreCost från spelarens goldAmount, fyller på spelarens currentHp till totalHp-nivån och skriver ut att man är frisk.
-
-        player.goldAmount =- hpRestoreCost;
-        player.currentHp = player.totalHp;
+        int hpRestoreCost = 10;
+        int currentGoldAmount = player.getGoldAmount();
+        if (currentGoldAmount >= hpRestoreCost) {
+            currentGoldAmount -= hpRestoreCost;
+            player.setGoldAmount(currentGoldAmount);
+            player.setCurrentHp(player.getTotalHp());
+            System.out.println("Nu är du helt frisk igen.");
+        } else {
+            System.out.println("Du har inte råd med detta.");
+        }
         System.out.println("Nu är du helt frisk igen.");
     }
 
-    public  void upgradeWeapon(Player player) {
+    public void upgradeWeapon(Player player) {
 
         //Denna metod tar bort weaponUpgradeCost från spelarens goldAmount, höjer vapens damage med 10 och skriver ut ett meddelande till spelaren.
+        int currentGold = player.getGoldAmount();
+        if (currentGold < weaponUpgradeCost) {
+            System.out.println("Du har inte råd med detta.");
+            return;
 
-        player.goldAmount =- weaponUpgradeCost;
-        player.weapon.damage =+ 10;
-        System.out.println("Din svärd är nu vassare.");
+        }
 
-    }
-
-    public static void showMenu(Player player) {
-        // Finns redan en metod för det i Menu.java.
+        player.weapon.damage += 10;
+        System.out.println("Ditt vapen har uppgraderats.");
     }
 }
-
-

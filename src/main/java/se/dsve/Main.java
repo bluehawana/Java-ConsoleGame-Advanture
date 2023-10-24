@@ -16,11 +16,9 @@ import se.dsve.adventureawaits.Player;
 import se.dsve.adventureawaits.Boss;
 import se.dsve.adventureawaits.Shop;
 
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=======================================");
-        System.out.println("Välkommen till adventureawaits!");
-        System.out.println("=======================================");
         GameEngine gameEngine = new GameEngine();
 
         Menu menu = new Menu();
@@ -39,7 +37,7 @@ public class Main {
 
         // Initialize spelar med ett vapen
         Weapon playerWeapon = new Weapon("Sword", gameEngine.weaponDamage);
-        Player player = new Player(Player.name, gameEngine.startHp, playerWeapon);
+        Player player = new Player(Menu.getPlayerName(), gameEngine.startHp, playerWeapon);
 
         // initialize Monster och Boss
         Monster monster = new Monster("Goblin", 30, 5, 10, 20);
@@ -62,7 +60,7 @@ public class Main {
 
         String currentMenu = "main";
         while (gameEngine.isGameStarted()) {
-            Menu.showMenu(currentMenu, player);
+            Menu.showMenu(gameEngine);
             int userinput = Menu.getInput();
 
             switch (currentMenu) {

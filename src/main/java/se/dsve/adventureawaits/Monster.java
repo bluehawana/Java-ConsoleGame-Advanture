@@ -50,4 +50,14 @@ public class Monster {
             System.out.println("Du dog.");
         }
     }
+
+    public int calculateDamage() {
+        // Skriv din kod här
+        return damage;
+    }
+
+    public int getHp() {
+        // Skriv din kod här
+        return hp;
+    }
 }
