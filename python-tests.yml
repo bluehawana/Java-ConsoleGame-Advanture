@@ -1,0 +1,23 @@
+.variables:
+  TEST_FILE: "main.py"
+
+run_python_tests:
+  stage: test_doc
+  tags:
+    - docker
+    - linux
+    - shared
+  image: python:3.12.0-alpine3.18
+  script:
+    - "apk add git"
+    - 'git clone $DOCS_URL_P .cloned_tests_doc'
+    - cp -rf .cloned_tests_doc/* .
+    - pip install poetry
+    - poetry install
+    - poetry run python $TEST_FILE
+  artifacts:
+    when: always
+    paths:
+      - result/*.xml
+    reports:
+      junit: result/*.xml
