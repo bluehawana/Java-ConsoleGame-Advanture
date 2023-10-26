@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Projekttitel
 
 ## Beskrivning
@@ -34,3 +35,7 @@ Om du vill uppmuntra bidrag från samhället, ge riktlinjer för hur andra kan b
 ## Licens
 
 Ange licensen under vilken du släpper ditt projekt. Detta kan vara viktigt för användare som vill veta användningsvillkoren och distributionen för din kod.
+=======
+# Java-ConsoleGame-Advanture
+Team project of a Java console play with features of 80s electornic game feeling.
+>>>>>>> github/development
