@@ -9,7 +9,7 @@ package se.dsve.adventureawaits;
  * ----------------------------------------------------------------------------
  */
 import java.util.Random;
-import se.dsve.adventureawaits.Monster;
+
 
 public class GameEngine {
 
@@ -111,9 +111,8 @@ public class GameEngine {
 
 
     public GameEngine() {
-        this.player = new Player("Default", 100, new Weapon("Sword", 10));
+            player = new Player(Menu.getPlayerName(), 100, new Weapon("Sword", 10));
     }
-
 
     public static void setDifficulty(int startHp, int levelXp, int weaponDamage) {
         if (!gameStarted) {
@@ -172,15 +171,13 @@ public class GameEngine {
     }
 
     public static Player getPlayer() {
-        return player;
+       return player;
     }
     public void setPlayerName(String playerName) {
         player.setName(playerName);
+
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 
 
     public void displayPlayerInfo() {

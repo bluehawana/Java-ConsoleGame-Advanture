@@ -1,7 +1,6 @@
 package se.dsve.adventureawaits;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
 /*
  * ----------------------------------------------------------------------------
@@ -12,7 +11,7 @@ import java.util.Scanner;
  */
 
 public class Player {
-    private String name;
+      private String name;
     private int hp;
     private int level;
     private int levelXp;
@@ -27,7 +26,6 @@ public class Player {
     public Player(String name, int startHp, Weapon weapon) {
 
         this.hp = 100;
-        this.name = name;
         this.level = 1;
         this.levelXp = 100;
         this.xp = 0;
@@ -36,6 +34,8 @@ public class Player {
         this.weapon = new Weapon("sword", 10);
         this.goldAmount = 0;
     }
+
+
 
     public void attack(Monster monster) {
         // Skriv din kod här
@@ -52,15 +52,17 @@ public class Player {
         }
     }
 
-    public String getName() {
-        return name;
-    }
 
     public int getHp() {
         return hp;
     }
 
+    public String getName() {
+        return Menu.getPlayerName();
+    }
+
     public int getCurrentHp() {
+
         return currentHp;
     }
 
@@ -72,6 +74,9 @@ public class Player {
         return levelXp;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
     public int getXp() {
         return xp;
     }
@@ -121,10 +126,6 @@ public class Player {
         return totalDamage;
 
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void restoreHp() {
         // Skriv din kod här
         // Tips: Använd gameEngine.startHp för att återställa spelarens hp
